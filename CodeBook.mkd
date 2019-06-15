@@ -1,0 +1,145 @@
+#Getting and Cleaning Data Course Project#
+The purpose of this project is to demonstrate the learners ability to collect, work with, and clean a data set. The goal is to prepare tidy data that can be used for later analysis.  
+
+##Source Data##
+One of the most exciting areas in all of data science right now is wearable computing.  Companies like Fitbit, Nike, and Jawbone Up are racing to develop the most advanced algorithms to attract new users. The data linked to from the course website represent data collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained:
+
+[http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)  
+
+Here are the data for the project:
+
+[https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip)
+
+##Goal of the R Script##
+From the Johns Hopkins Data Science track on Coursera, the steps to reach the goal of the exercise are listed below:
+
+1. Merges the training and the test sets to create one data set.
+2. Extracts only the measurements on the mean and standard deviation for each measurement.
+3. Uses descriptive activity names to name the activities in the data set
+4. Appropriately labels the data set with descriptive variable names.
+5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+
+Link to the goals on Coursera:  
+[https://www.coursera.org/learn/data-cleaning/peer/FIZtT/getting-and-cleaning-data-course-project](https://www.coursera.org/learn/data-cleaning/peer/FIZtT/getting-and-cleaning-data-course-project)
+
+##Activity Labels##
+Within the data set, six activities are identified from the users actions as detected by the participants cellphone sensors.  Those actions are listed below and also found in `activity_labels.txt` of the source data:  
+`1 WALKING`  
+`2 WALKING_UPSTAIRS`  
+`3 WALKING_DOWNSTAIRS`  
+`4 SITTING`  
+`5 STANDING`  
+`6 LAYING`  
+
+##Features##
+The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
+
+Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
+
+Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals). 
+
+These signals were used to estimate variables of the feature vector for each pattern:  
+'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
+
+`tBodyAcc-XYZ`  
+`tGravityAcc-XYZ`  
+`tBodyAccJerk-XYZ`  
+`tBodyGyro-XYZ`  
+`tBodyGyroJerk-XYZ`  
+`tBodyAccMag`  
+`tGravityAccMag`  
+`tBodyAccJerkMag`  
+`tBodyGyroMag`  
+`tBodyGyroJerkMag`  
+`fBodyAcc-XYZ`  
+`fBodyAccJerk-XYZ`  
+`fBodyGyro-XYZ`  
+`fBodyAccMag`  
+`fBodyAccJerkMag`  
+`fBodyGyroMag`  
+`fBodyGyroJerkMag`  
+
+The set of variables that were estimated from these signals are: 
+
+mean(): Mean value  
+std(): Standard deviation  
+mad(): Median absolute deviation   
+max(): Largest value in array   
+min(): Smallest value in array  
+sma(): Signal magnitude area  
+energy(): Energy measure. Sum of the squares divided by the number of values.   
+iqr(): Interquartile range   
+entropy(): Signal entropy  
+arCoeff(): Autorregresion coefficients with Burg order equal to 4  
+correlation(): correlation coefficient between two signals  
+maxInds(): index of the frequency component with largest magnitude  
+meanFreq(): Weighted average of the frequency components to obtain a mean frequency  
+skewness(): skewness of the frequency domain signal   
+kurtosis(): kurtosis of the frequency domain signal   
+bandsEnergy(): Energy of a frequency interval within the 64 bins of the FFT of each window.
+angle(): Angle between to vectors.  
+
+Additional vectors obtained by averaging the signals in a signal window sample. These are used on the angle() variable:
+
+gravityMean  
+tBodyAccMean  
+tBodyAccJerkMean  
+tBodyGyroMean  
+tBodyGyroJerkMean  
+
+The complete list of variables of each feature vector is available in `features.txt` of the source data.
+
+##Data Transformation##
+Once downloaded, the raw data needed to be be arranged prior to being analyzed for means.  The transformation process is listed below:  
+
+1. The `run_analysis.R` script first checks if a `./data` directory is present in the current working directory, if not `./data` is created.
+2. The following variables are joined to create one data set.  `x_train`, and `y_train` into `subject_train`.  `x_test`, and `y_test` into `subject_test.  
+3. The `activityLabels` were generated from the source data's `activity_labels.txt` file.
+4. Column names were derived from the data set and joined using `cbind` and `rbind`.
+5. The `mean_and_std` were generated by using `grepl` to calculate for  `activityId`, and `subjectId`.
+6. To label activity names with the std and mean calculations, `setWithActivityNames` was created by merging `activityLabels` and the previously calculated `setForMeanAndStd`.
+7. The `secTidySet` was created using the `aggrigate` function of R using `subjectId`, and `activityId`, and the variable `setWithActivityNames`, to then calculate the mean.  The set was then ordered by `subjectId`, and `activityId`
+8. Finally the output of the `secTidySet` is written using the `write.table` function to `"secTidySet"`.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
