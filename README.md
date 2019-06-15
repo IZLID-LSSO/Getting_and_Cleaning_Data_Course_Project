@@ -1,8 +1,8 @@
-# Getting and Cleaning Data Course Project#
+# Getting and Cleaning Data Course Project
 
 The repository contains the final products for the Johns Hopkins Data Science track through Coursera "Getting and Cleaning Data".
 
-##Files##
+## Files
 Three files are contained in the repository, their function is listed below.  
 
 ``Codebook.md`` lists all variables from the initial data set, and the analysis processes performed on the representative data.
