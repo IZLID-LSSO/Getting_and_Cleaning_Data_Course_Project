@@ -1,7 +1,7 @@
-#Getting and Cleaning Data Course Project#
+# Getting and Cleaning Data Course Project
 The purpose of this project is to demonstrate the learners ability to collect, work with, and clean a data set. The goal is to prepare tidy data that can be used for later analysis.  
 
-##Source Data##
+## Source Data 
 One of the most exciting areas in all of data science right now is wearable computing.  Companies like Fitbit, Nike, and Jawbone Up are racing to develop the most advanced algorithms to attract new users. The data linked to from the course website represent data collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained:
 
 [http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)  
@@ -10,7 +10,7 @@ Here are the data for the project:
 
 [https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip)
 
-##Goal of the R Script##
+## Goal of the R Script
 From the Johns Hopkins Data Science track on Coursera, the steps to reach the goal of the exercise are listed below:
 
 1. Merges the training and the test sets to create one data set.
@@ -22,7 +22,7 @@ From the Johns Hopkins Data Science track on Coursera, the steps to reach the go
 Link to the goals on Coursera:  
 [https://www.coursera.org/learn/data-cleaning/peer/FIZtT/getting-and-cleaning-data-course-project](https://www.coursera.org/learn/data-cleaning/peer/FIZtT/getting-and-cleaning-data-course-project)
 
-##Activity Labels##
+## Activity Labels
 Within the data set, six activities are identified from the users actions as detected by the participants cellphone sensors.  Those actions are listed below and also found in `activity_labels.txt` of the source data:  
 `1 WALKING`  
 `2 WALKING_UPSTAIRS`  
@@ -31,7 +31,7 @@ Within the data set, six activities are identified from the users actions as det
 `5 STANDING`  
 `6 LAYING`  
 
-##Features##
+## Features
 The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
 
 Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
@@ -89,7 +89,7 @@ tBodyGyroJerkMean
 
 The complete list of variables of each feature vector is available in `features.txt` of the source data.
 
-##Data Transformation##
+## Data Transformation
 Once downloaded, the raw data needed to be be arranged prior to being analyzed for means.  The transformation process is listed below:  
 
 1. The `run_analysis.R` script first checks if a `./data` directory is present in the current working directory, if not `./data` is created.
